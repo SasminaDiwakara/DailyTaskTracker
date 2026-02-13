@@ -1,4 +1,4 @@
-const BASE_URL = "http://192.168.1.5:8080/DailyTaskBackend/TaskServlet";
+const BASE_URL = "http://192.168.100.97:8081/TaskTrackerBackend/TaskServlet";
 
 export const getTasks = async () => {
   const response = await fetch(BASE_URL);
