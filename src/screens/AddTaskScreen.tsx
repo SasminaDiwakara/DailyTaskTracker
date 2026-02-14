@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -13,12 +13,25 @@ import {
   StatusBar
 } from 'react-native';
 import { addTask } from '../services/api';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function AddTaskScreen({ navigation }: any) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [loading, setLoading] = useState(false);
+  const [userEmail, setUserEmail] = useState('');
 
+  useEffect(() => {
+    loadUserEmail();
+  }, []);
+
+  const loadUserEmail = async () => {
+    const userJson = await AsyncStorage.getItem('user');
+    if (userJson) {
+      const user = JSON.parse(userJson);
+      setUserEmail(user.email);
+    }
+  };
   const saveTask = async () => {
     if (!title.trim()) {
       Alert.alert('Error', 'Please enter a task title');
@@ -27,7 +40,7 @@ export default function AddTaskScreen({ navigation }: any) {
 
     setLoading(true);
     try {
-      await addTask(title.trim(), description.trim());
+      await addTask(title, description, userEmail);
       navigation.goBack();
       setTimeout(() => {
         Alert.alert('Success', 'Task added successfully!');
