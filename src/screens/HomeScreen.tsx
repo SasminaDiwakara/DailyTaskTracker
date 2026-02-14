@@ -94,17 +94,6 @@ export default function HomeScreen({ navigation, route }: any) {
           <Text style={styles.cardSubtitle}>Create a new task</Text>
         </TouchableOpacity>
       </View>
-
-      <View style={styles.statsContainer}>
-        <View style={styles.statBox}>
-          <Text style={styles.statNumber}>0</Text>
-          <Text style={styles.statLabel}>Pending</Text>
-        </View>
-        <View style={styles.statBox}>
-          <Text style={styles.statNumber}>0</Text>
-          <Text style={styles.statLabel}>Completed</Text>
-        </View>
-      </View>
     </View>
   );
 }
