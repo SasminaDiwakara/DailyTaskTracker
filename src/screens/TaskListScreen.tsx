@@ -86,16 +86,21 @@ export default function TaskListScreen({ navigation }: any) {
 
   const renderTask = ({ item }: any) => (
     <View style={styles.taskCard}>
-      <View style={styles.cardTop}>
-        <View style={styles.taskMainContent}>
-          <Text style={styles.taskTitle}>{item.title}</Text>
-          {item.description && (
-            <Text style={styles.taskDescription} numberOfLines={2}>
-              {item.description}
-            </Text>
-          )}
-        </View>
-      </View>
+<View style={styles.taskRow}>
+  <View style={styles.taskMainContent}>
+    <Text style={styles.taskTitle}>{item.title}</Text>
+    {item.description && (
+      <Text style={styles.taskDescription} numberOfLines={2}>
+        {item.description}
+      </Text>
+    )}
+  </View>
+
+  <TouchableOpacity style={styles.completeBtn}>
+    <Text style={styles.completeBtnText}>✓</Text>
+  </TouchableOpacity>
+</View>
+
 
       <View style={styles.cardBottom}>
         <View style={styles.dateContainer}>
@@ -435,5 +440,25 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '700',
     letterSpacing: 0.3,
+  },
+  taskRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 16,
+    paddingBottom: 12,
+  },
+  completeBtn: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: '#22C55E',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 10,
+  },
+  completeBtnText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 });
